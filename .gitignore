@@ -1,0 +1,7 @@
+# 构建与缓存
+build/
+DerivedData/
+*.xcuserdata/
+*.xcuserdatad/
+Zsign/src/.zsign_cache/
+.DS_Store
