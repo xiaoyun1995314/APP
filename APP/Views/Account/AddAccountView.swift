@@ -37,6 +37,11 @@ struct AddAccountView: View {
 
                             VStack(spacing: 20) {
                                 Image("loginlogo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(16)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
 
                                 VStack(spacing: 8) {
                                     Text("apple_id".localized)
