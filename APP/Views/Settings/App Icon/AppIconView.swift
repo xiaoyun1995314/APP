@@ -33,14 +33,14 @@ extension AppIconView {
 
 	static func loadIcon(_ name: String?) -> UIImage {
 		guard let iconName = name else {
-			if let logo = UIImage(named: "applelogo") {
+			if let logo = UIImage(named: "ioslogo") {
 				return logo
 			}
 			return UIImage(systemName: "app.fill") ?? UIImage()
 		}
 
 		if iconName == "app" {
-			if let logo = UIImage(named: "applelogo") {
+			if let logo = UIImage(named: "ioslogo") {
 				return logo
 			}
 		}
