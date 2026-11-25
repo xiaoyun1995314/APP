@@ -74,12 +74,7 @@ struct TestFlightDownloadView: View {
                     Color.clear.frame(height: 8)
 
                     VStack(spacing: 16) {
-                        Image("AppLogo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .cornerRadius(12)
-                            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
+                        Image("loginlogo")
 
                         Text("TestFlight")
                             .font(.system(size: 34, weight: .bold))
