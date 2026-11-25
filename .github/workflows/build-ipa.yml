@@ -1,0 +1,47 @@
+name: Build IPA
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve Swift Packages
+        run: |
+          xcodebuild -resolvePackageDependencies \
+            -project APP.xcodeproj \
+            -scheme APP \
+            -configuration Release || true
+
+      - name: Compile (unsigned)
+        run: |
+          xcodebuild -project APP.xcodeproj \
+            -scheme APP \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package IPA
+        run: |
+          APP_APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "APP.app" | head -1)
+          echo "Found app: $APP_APP"
+          rm -rf build/Payload APP.ipa
+          mkdir -p build/Payload
+          ditto "$APP_APP" build/Payload/APP.app
+          cd build && zip -qry ../APP.ipa Payload
+          ls -lh ../APP.ipa
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: APP-unsigned-ipa
+          path: APP.ipa
