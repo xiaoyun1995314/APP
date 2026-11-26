@@ -1,5 +1,5 @@
 ## 訫云资源：Unlicense 许可证
-#邮箱：450000318@qq.com
+邮箱：450000318@qq.com
 
 ```
 🔴 <font color="red">遵循 [Unlicense 许可证](https://unlicense.org/#unlicensed-free-software)</font>
